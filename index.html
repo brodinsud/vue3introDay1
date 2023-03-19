@@ -1,0 +1,69 @@
+<!--first run -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue 3 Introduction</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+    <!-- Import Vue.js -->
+    <!-- เป็นการดึงไฟล์ VueJS แบบ CDN (command directory network) -->
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="cart">{{ cart }}</div>
+      <div class="product-display">
+        <div class="product-container">
+          <div class="product-image">
+            <!-- <img
+        v-bind:src="image"
+        v-bind:alt="description"
+        v-bind:title="description"
+        /> -->
+            <img :src="image" :alt="description" :title="description" />
+          </div>
+          <div class="product-info">
+            <!-- <h1>{{ product }}</h1> -->
+            <h1>{{ title }}</h1>
+            <p>{{ description }}</p>
+
+            <!-- <p v-if="instock">In Stock</p>
+        <p v-else>Out of Stock</p> -->
+            <p v-if="inventory > 10">In Stock</p>
+            <p v-else-if="inventory > 0 &&  inventory <= 10">Almost sold out</p>
+            <p v-else>Out of Stock</p>
+
+            <ul>
+              <li v-for="detail in details">{{ detail }}</li>
+            </ul>
+
+            <div
+              v-for="(variant,index) in variants"
+              :key="variant.id"
+              class="color-circle"
+              :style="{backgroundColor:variant.color}"
+              @mouseover="updateImage(variant.image)"
+            >
+              <!-- {{ index+1 }} {{ variant.color }}-->
+            </div>
+            <div>
+              <button
+                class="button"
+                :class="{disabledButton: inventory <= 0}"
+                :disabled="inventory <= 0"
+                @click="addToCart"
+              >
+                Add To Cart
+              </button>
+            </div>
+            <a v-bind:href="url">Made by Apple California</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Import Js -->
+    <script src="./main.js"></script>
+  </body>
+</html>
